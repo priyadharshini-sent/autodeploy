@@ -24,7 +24,7 @@ pipeline {
   agent {
     
     kubernetes {
-      label 'ui-platform'
+      label 'autodeploy'
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
