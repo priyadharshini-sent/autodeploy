@@ -1,5 +1,4 @@
 node{
-  
   stage('SCM Checkout'){
     git 'https://github.com/priyadharshini-sent/autodeploy.git'
   }
