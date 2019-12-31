@@ -13,7 +13,7 @@ pipeline {
 
   environment {
     PROJECT = "sentient-207310"
-    APP_NAME = "gceme"
+    APP_NAME = "autodeploy"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "jenkins-cd"
     CLUSTER_ZONE = "us-east1-d"
