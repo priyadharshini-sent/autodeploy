@@ -1,7 +1,7 @@
 node{
   
   stage('SCM Checkout'){
-    git 'https://github.com/priyadharshini-sent/ui-platform.git'
+    git 'https://github.com/priyadharshini-sent/autodeploy.git'
   }
   
   stage('Complie and Package'){
