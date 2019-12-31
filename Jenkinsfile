@@ -20,7 +20,7 @@ pipeline {
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
   }
-
+  agent any
   stages {
     
     stage('Build and push image with Container Builder') {
