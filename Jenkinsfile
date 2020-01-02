@@ -10,11 +10,7 @@ node{
   
   stage('Post Build'){
     cd "${WORKSPACE}"
-    git status # should show <file> as changed or unversioned
-
-    git add <file>
-    git commit -m "Added file with automated Jenikins job"
-    git push
+    git status
   }
 }
 pipeline {
