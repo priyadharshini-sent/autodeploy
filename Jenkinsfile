@@ -7,6 +7,15 @@ node{
     def mvnHome =  tool name: 'apache-maven-3.6.3', type: 'maven'
     sh "${mvnHome}/bin/mvn package"
   }
+  
+  stage('Post Build'){
+    cd "${WORKSPACE}"
+    git status # should show <file> as changed or unversioned
+
+    git add <file>
+    git commit -m "Added file with automated Jenikins job"
+    git push
+  }
 }
 pipeline {
 
