@@ -1,4 +1,13 @@
+node{
+  stage('SCM Checkout'){
+    git 'https://github.com/priyadharshini-sent/autodeploy.git'
+  }
 
+  stage('Complie and Package'){
+    def mvnHome =  tool name: 'apache-maven-3.6.3', type: 'maven'
+    sh "${mvnHome}/bin/mvn package"
+  }
+}
 pipeline {
 
   environment {
@@ -45,14 +54,6 @@ spec:
     }
   }
   stages {
-    stage('SCM Checkout'){
-    git 'https://github.com/priyadharshini-sent/autodeploy.git'
-  }
-  
-  stage('Complie and Package'){
-    def mvnHome =  tool name: 'apache-maven-3.6.3', type: 'maven'
-    sh "${mvnHome}/bin/mvn package"
-  }
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
