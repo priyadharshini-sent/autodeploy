@@ -9,8 +9,7 @@ node{
   }
   
   stage('Post Build'){
-    cd "${WORKSPACE}"
-    git status
+   
   }
 }
 pipeline {
