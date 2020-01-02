@@ -1,13 +1,4 @@
-node{
-  stage('SCM Checkout'){
-    git 'https://github.com/priyadharshini-sent/autodeploy.git'
-  }
-  
-  stage('Complie and Package'){
-    def mvnHome =  tool name: 'apache-maven-3.6.3', type: 'maven'
-    sh "${mvnHome}/bin/mvn package"
-  }
-}
+
 
 pipeline {
 
@@ -20,6 +11,17 @@ pipeline {
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
   }
+  
+  node{
+  stage('SCM Checkout'){
+    git 'https://github.com/priyadharshini-sent/autodeploy.git'
+  }
+  
+  stage('Complie and Package'){
+    def mvnHome =  tool name: 'apache-maven-3.6.3', type: 'maven'
+    sh "${mvnHome}/bin/mvn package"
+  }
+}
   
   agent {
     
