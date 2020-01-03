@@ -1,19 +1,18 @@
 pipeline {
 
-	  environment {
-		PROJECT = "sentient-207310"
-		APP_NAME = "autodeploy"
-		FE_SVC_NAME = "${APP_NAME}-frontend"
-		CLUSTER = "jenkins-cd"
-		CLUSTER_ZONE = "us-east1-d"
-		IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-		JENKINS_CRED = "${PROJECT}"
-	  }
-  
+  environment {
+    PROJECT = "sentient-207310"
+    APP_NAME = "gceme"
+    FE_SVC_NAME = "${APP_NAME}-frontend"
+    CLUSTER = "jenkins-cd"
+    CLUSTER_ZONE = "us-east1-d"
+    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    JENKINS_CRED = "${PROJECT}"
+  }
+
   agent {
-    
     kubernetes {
-      label 'autodeploy'
+      label 'sample-app'
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
@@ -34,16 +33,17 @@ spec:
     image: gcr.io/cloud-builders/gcloud
     command:
     - cat
-    tty: true
+   tty: true
   - name: kubectl
     image: gcr.io/cloud-builders/kubectl
     command:
     - cat
     tty: true
 """
-    }
+}
   }
   stages {
+
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
@@ -51,5 +51,6 @@ spec:
         }
       }
     }
+
   }
 }
