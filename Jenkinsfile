@@ -9,6 +9,10 @@ node{
   }
   
   stage('Build Docker Image'){
+    def label = "docker-jenkins-${UUID.randomUUID().toString()}"
+def home = "/home/jenkins"
+def workspace = "${home}/workspace/build-docker-jenkins"
+def workdir = "${workspace}/src/localhost/docker-jenkins/"
    sh 'docker build -t priya1410/autodeploy:1.0.0 .'
   }
 }
