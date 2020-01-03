@@ -9,6 +9,6 @@ node{
   }
   
   stage('Build Docker Image'){
-   sh 'docker build -t priya1410/autodeploy:1.0.0'
+   sh 'docker build -t priya1410/autodeploy:1.0.0 .'
   }
 }
