@@ -10,6 +10,15 @@ node{
 }
 
 pipeline {
+  environment {
+    PROJECT = "sentient-207310"
+    APP_NAME = "autodeploy"
+    FE_SVC_NAME = "${APP_NAME}-frontend"
+    CLUSTER = "jenkins-cd"
+    CLUSTER_ZONE = "us-east1-d"
+    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    JENKINS_CRED = "${PROJECT}"
+  }
   agent {
     kubernetes {
       label 'autodeploy'
